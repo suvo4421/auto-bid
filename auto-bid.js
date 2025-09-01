@@ -1,15 +1,3 @@
-// server.js
-const express = require("express");
-const app = express();
-const PORT = process.env.PORT || 3000;
-
-// 🔑 Authentication Key (Extension এর সাথে মিলতে হবে)
-const SECRET_KEY = "944421";
-
-// ======================
-// Main Code (auto-bid.js)
-// ======================
-const mainCode = `
 javascript:(function () {
   console.log("🚀 Script started by 9800555977");
   const locations = ["PAKUR DUMP - STO", "Gangarampur - STO", "RAIGANJ - STO", "KALIAGANJ-STO", "CHANCHAL-STO", "BG DALKHOLA 1 -STO", "MALDA - STO", "BG MALDA 1 -STO", "KRISHNANAGAR - STO", "BERHAMPORE T9 - STO", "BG BERHAMPORE 1 -STO", "SONAR BANGLA HUB - S",
@@ -315,27 +303,3 @@ const value = Math.ceil(rate - decrease);
   }, 200);
 setInterval(clickOkButton, 1234);
 })();
-`;
-
-// ======================
-// Secure Route
-// ======================
-app.get("/get-script", (req, res) => {
-  const key = req.query.key;
-
-  // ✅ Key Validation
-  if (key !== SECRET_KEY) {
-    return res.status(403).send("❌ Forbidden: Invalid Key");
-  }
-
-  // ✅ Send Secure JS
-  res.setHeader("Content-Type", "application/javascript");
-  res.send(mainCode);
-});
-
-// ======================
-// Start Server
-// ======================
-app.listen(PORT, () => {
-  console.log(`✅ Secure Script Server running on http://localhost:${PORT}`);
-});
